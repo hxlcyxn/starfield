@@ -1,6 +1,6 @@
 import { App, Astal, Gtk, Gdk } from "astal/gtk3";
 import Right from "./sections/Right";
-import Middle from "./sections/Midle";
+import Middle from "./sections/Middle";
 
 export default function Bar(gdkmonitor: Gdk.Monitor) {
   return (
