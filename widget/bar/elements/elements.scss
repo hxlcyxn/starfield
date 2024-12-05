@@ -1,0 +1,38 @@
+@use "Battery/Battery.scss";
+@use "PowerProfiles/PowerProfiles.scss";
+@use "NiriLanguage/NiriLanguage.scss";
+@use "TimeDate/TimeDate.scss";
+
+.BarElementButton {
+    /* background-color: rgba(16, 16, 23, 1); */
+    border-radius: 0.25em;
+    margin: 0rem 0.25em;
+}
+
+.BarIcon,
+.BarLabel {
+    background-color: rgba(16, 16, 23, 1);
+    padding: 0.2em 0.5em;
+}
+
+.BarIcon {
+    border-top-left-radius: 0.5em;
+    border-bottom-left-radius: 0.5em;
+}
+
+.BarLabel {
+    border-top-right-radius: 0.5em;
+    border-bottom-right-radius: 0.5em;
+}
+
+.BarIcon + .BarLabel {
+    /* padding-left: 0.5em; */
+}
+
+.BarIcon.solo {
+    border-radius: 0.5em;
+}
+
+.BarLabel.solo {
+    border-radius: 0.5em;
+}

@@ -1,0 +1,8 @@
+@use "./widget/bar/Bar.scss";
+@use "./widget/notifications/Notifications.scss";
+@use "./widget/launcher/Launcher.scss";
+
+* {
+    all: unset;
+    font-size: 1.2rem;
+}
