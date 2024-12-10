@@ -2,6 +2,7 @@
 @use "PowerProfiles/PowerProfiles.scss";
 @use "NiriLanguage/NiriLanguage.scss";
 @use "TimeDate/TimeDate.scss";
+@use "Audio/Audio.scss";
 
 .BarElementButton {
     /* background-color: rgba(16, 16, 23, 1); */
@@ -18,6 +19,11 @@
 .BarIcon {
     border-top-left-radius: 0.5em;
     border-bottom-left-radius: 0.5em;
+}
+
+.BarIcon + .BarIcon {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
 }
 
 .BarLabel {

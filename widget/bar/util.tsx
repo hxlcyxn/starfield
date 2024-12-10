@@ -2,22 +2,21 @@ import { Box } from "astal/gtk3/widget";
 import { Astal, Gtk, Widget } from "astal/gtk3";
 import Binding, { type Subscribable } from "astal/binding";
 
-export type BarIconProps = {
+export type BarIconProps<C> = {
   className: string;
-  dynamicClassVar?: Binding<any>;
-  dynamicClassTransform?: (val: any) => string;
+  dynamicClassVar?: Binding<C>;
+  dynamicClassTransform?: (val: C) => string;
   icon: string | Binding<string>;
 };
 
-export function BarIcon(props: BarIconProps) {
+export function BarIcon<C>(props: BarIconProps<C>) {
   let className: string | Binding<string>;
   let staticName = "BarIcon " + props.className;
   className = staticName;
   if (props.dynamicClassVar && props.dynamicClassTransform) {
     className = props.dynamicClassVar.as(
-      (val) => staticName + " " + props.dynamicClassTransform(val),
+      (val) => staticName + " " + props.dynamicClassTransform!(val),
     );
-    print(className.get());
   }
   return <icon className={className} icon={props.icon} />;
 }
@@ -36,9 +35,8 @@ export function BarLabel<C, L>(props: BarLabelProps<C, L>) {
   className = staticName;
   if (props.dynamicClassVar && props.dynamicClassTransform) {
     className = props.dynamicClassVar.as(
-      (val) => staticName + " " + props.dynamicClassTransform(val),
+      (val) => staticName + " " + props.dynamicClassTransform!(val),
     );
-    print(className.get());
   }
   return (
     <label
@@ -59,7 +57,12 @@ export type BarElement = {
   onClick?: () => void;
 };
 
-export function BarElementButton(element: BarElement): Partial<Astal.Button> {
+export function BarElementButton(
+  element: BarElement | undefined,
+): Partial<Astal.Button> {
+  if (!element) {
+    return <button>kaputt</button>;
+  }
   const className = `BarElementButton ${element.class}`;
   return (
     <button
