@@ -15,7 +15,7 @@ proc.connect("stdout", (_, out) => {
   }
 });
 
-export default function NiriLanguage() {
+export default function NiriLanguage(): BarElement {
   const IconLabel = BarIcon({
     icon: "input-keyboard-symbolic",
     className: "nirilanguage",
