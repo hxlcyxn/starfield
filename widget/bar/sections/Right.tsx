@@ -7,10 +7,12 @@ import PowerProfiles from "../elements/PowerProfiles";
 import NiriLanguage from "../elements/NiriLanguage";
 import Audio from "../elements/Audio";
 import Network from "../elements/Network";
+import Tailscale from "../elements/Tailscale";
 
 export default function Right() {
   return (
     <box halign={Gtk.Align.END}>
+      {BarElementButton(Tailscale())}
       {BarElementButton(Network())}
       {BarElementButton(Audio())}
       {BarElementButton(NiriLanguage())}

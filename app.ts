@@ -6,6 +6,7 @@ import Launcher from "./widget/launcher";
 
 App.start({
   css: style,
+  icons: `${SRC}/icons`,
   main() {
     App.get_monitors().map((monitor: Gdk.Monitor) => {
       Bar(monitor);

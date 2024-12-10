@@ -1,0 +1,7 @@
+.BarIcon.tailscale {
+    color: white;
+    &.active {
+        color: black;
+        background-color: #c9e4e1;
+    }
+}
