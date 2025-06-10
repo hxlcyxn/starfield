@@ -16,7 +16,8 @@
 
 .BarIcon,
 .BarLabel {
-    background-color: rgba(16, 16, 23, 1);
+    color: $fg;
+    background-color: $bg;
     padding: 0.2em 0.5em;
 }
 
@@ -62,13 +63,10 @@
 
 .BarLabel.battery {
     &.low {
-        color: #fea346;
     }
     &.charging {
-        color: #cfe8af;
     }
     &.normal {
-        color: #a3cff4;
     }
 }
 
@@ -105,7 +103,6 @@
 }
 
 .BarIcon.tailscale {
-    color: white;
     &.active {
         color: black;
         background-color: #c9e4e1;

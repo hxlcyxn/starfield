@@ -1,5 +1,6 @@
-import { Binding, exec, Variable } from "astal";
+import { bind, Binding, exec, Variable } from "astal";
 import { BarIcon, makeElement } from "../../util";
+import { App } from "astal/gtk3";
 
 enum ColorScheme {
   Default,
@@ -19,27 +20,32 @@ export default function DarkMode() {
       : "daytime-sunrise-symbolic",
   );
   const IconLabel = BarIcon({
-    className: "solo tailscale",
+    className: "solo darkmode",
     icon: Binding.bind(icon),
   });
   function onClick() {
     const val = state.get();
+
+    const swwwArgs =
+      "--transition-type wipe --transition-angle 180 --transition-fps 60";
     if (val == ColorScheme.Default) {
       exec(
         "dconf write /org/gnome/desktop/interface/color-scheme \"'prefer-dark'\"",
       );
-      exec("sh -c 'swww img ~/Pictures/sui_bg.png'");
+      exec(`sh -c 'swww img ~/Pictures/sui_bg.png ${swwwArgs}'`);
+      App.apply_css("/tmp/dark.css");
     } else {
       exec(
         "dconf write /org/gnome/desktop/interface/color-scheme \"'default'\"",
       );
-      exec("sh -c 'swww img $HOME/Pictures/sui_gray.png'");
+      exec(`sh -c 'swww img $HOME/Pictures/sui_gray.png ${swwwArgs}'`);
+      App.apply_css("/tmp/light.css");
     }
   }
 
   return makeElement({
     type: "icon",
-    name: "Tailscale",
+    name: "DarkMode",
     icon: IconLabel,
     onClick,
   });
