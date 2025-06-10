@@ -1,8 +1,133 @@
-@use "./widget/bar/Bar.scss";
-@use "./widget/notifications/Notifications.scss";
-@use "./widget/launcher/Launcher.scss";
-
 * {
     all: unset;
     font-size: 1.2rem;
+}
+
+.Bar {
+    centerbox {
+        margin: 0.5em 0.5em;
+    }
+}
+
+.BarElementButton {
+    border-radius: 0.25em;
+    margin: 0rem 0.25em;
+}
+
+.BarIcon,
+.BarLabel {
+    background-color: rgba(16, 16, 23, 1);
+    padding: 0.2em 0.5em;
+}
+
+.BarIcon {
+    border-top-left-radius: 0.5em;
+    border-bottom-left-radius: 0.5em;
+}
+
+.BarIcon + .BarIcon {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+}
+
+.BarLabel {
+    border-top-right-radius: 0.5em;
+    border-bottom-right-radius: 0.5em;
+}
+
+.BarIcon + .BarLabel {
+    /* padding-left: 0.5em; */
+}
+
+.BarIcon.solo {
+    border-radius: 0.5em;
+}
+
+.BarLabel.solo {
+    border-radius: 0.5em;
+}
+
+.BarIcon.battery {
+    color: black;
+    &.low {
+        background-color: #fea346;
+    }
+    &.charging {
+        background-color: #cfe8af;
+    }
+    &.normal {
+        background-color: #a3cff4;
+    }
+}
+
+.BarLabel.battery {
+    &.low {
+        color: #fea346;
+    }
+    &.charging {
+        color: #cfe8af;
+    }
+    &.normal {
+        color: #a3cff4;
+    }
+}
+
+.BarIcon.nirilanguage {
+    color: black;
+    background-color: #15b097;
+}
+
+.BarLabel.nirilanguage {
+}
+
+.BarIcon.timedate {
+    color: black;
+    background-color: #ffdeaa;
+}
+
+.BarLabel.timedate {
+}
+
+.BarIcon.audio {
+    color: black;
+    background-color: #c7b2c2;
+}
+
+.BarLabel.audio {
+}
+
+.BarIcon.network {
+    color: black;
+    background-color: #97c6c1;
+}
+
+.BarLabel.network {
+}
+
+.BarIcon.tailscale {
+    color: white;
+    &.active {
+        color: black;
+        background-color: #c9e4e1;
+    }
+}
+
+.Dropdown {
+    centerbox {
+        margin: 0.5em;
+        background: blue;
+    }
+}
+
+.BarIcon.powerprofiles {
+    color: black;
+    &.power-saver {
+        background-color: #cfe8af;
+    }
+    &.balanced {
+        background-color: #a3cff4;
+    }
+    &.performance {
+        background-color: #fea346;
+    }
 }
