@@ -32,13 +32,13 @@ export default function DarkMode() {
       exec(
         "dconf write /org/gnome/desktop/interface/color-scheme \"'prefer-dark'\"",
       );
-      exec(`sh -c 'swww img ~/Pictures/sui_bg.png ${swwwArgs}'`);
+      exec(`sh -c 'swww img ~/Pictures/Wallpapers/sui_bg.png ${swwwArgs}'`);
       App.apply_css("/tmp/dark.css");
     } else {
       exec(
         "dconf write /org/gnome/desktop/interface/color-scheme \"'default'\"",
       );
-      exec(`sh -c 'swww img $HOME/Pictures/sui_gray.png ${swwwArgs}'`);
+      exec(`sh -c 'swww img $HOME/Pictures/Wallpapers/sui_gray.png ${swwwArgs}'`);
       App.apply_css("/tmp/light.css");
     }
   }

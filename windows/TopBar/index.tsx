@@ -1,6 +1,7 @@
 import { App, Astal, Gdk } from "astal/gtk3";
 import Middle from "./sections/Middle";
 import Right from "./sections/Right";
+import Left from "./sections/Left";
 
 export default function Bar(gdkmonitor: Gdk.Monitor) {
   return (
@@ -19,7 +20,7 @@ export default function Bar(gdkmonitor: Gdk.Monitor) {
     >
       <centerbox
         hexpand
-        startWidget={<box />}
+        startWidget={Left()}
         centerWidget={Middle()}
         endWidget={Right()}
       />
