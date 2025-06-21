@@ -12,7 +12,11 @@ function Player(player: Mpris.Player) {
     if (artist === undefined || title === undefined) {
       return "No Player found";
     } else {
-      return `${artist} - ${title}`;
+      if (artist != "") {
+        return `${artist} - ${title}`;
+      } else {
+        return title;
+      }
     }
   });
 
