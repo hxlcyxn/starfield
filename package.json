@@ -1,0 +1,6 @@
+{
+  "name": "starfield",
+  "dependencies": {
+    "astal": "/usr/share/astal/gjs"
+  }
+}

@@ -1,19 +1,6 @@
 import { bind, subprocess, Variable } from "astal";
 import { BarIcon, BarLabel, makeElement } from "../../util";
-
-const availableLayouts: Variable<string[]> = Variable([]);
-const currentLayout = Variable(0);
-
-const proc = subprocess("niri msg --json event-stream");
-proc.connect("stdout", (_, out) => {
-  const msg = JSON.parse(out);
-  if (msg.KeyboardLayoutsChanged) {
-    availableLayouts.set(msg.KeyboardLayoutsChanged.keyboard_layouts.names);
-  }
-  if (msg.KeyboardLayoutSwitched) {
-    currentLayout.set(msg.KeyboardLayoutSwitched.idx);
-  }
-});
+import niri from "../../../../util/niri";
 
 export default function NiriLanguage() {
   const IconLabel = BarIcon({
@@ -21,13 +8,9 @@ export default function NiriLanguage() {
     className: "nirilanguage",
   });
   const LanguageLabel = BarLabel({
-    label: bind(
-      Variable.derive(
-        [availableLayouts, currentLayout],
-        (layouts, layoutIndex) => layouts[layoutIndex] ?? "no layout detected",
-      ),
-    ),
+    label: bind(niri, "keyboardLayouts").as((kb) => kb.names[kb.current_idx]),
     transform: (val) => {
+      console.log("changed in ags", val);
       if (val === "") {
         return "";
       }
