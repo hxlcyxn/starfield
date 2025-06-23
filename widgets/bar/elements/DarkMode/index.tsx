@@ -25,22 +25,27 @@ export default function DarkMode() {
   });
   function onClick() {
     const val = state.get();
+    const wallpaper =
+      val == ColorScheme.Default
+        ? "~/Pictures/Wallpapers/sui_bg.png"
+        : "~/Pictures/Wallpapers/sui_gray.png";
+    const dconfScheme =
+      val == ColorScheme.Default ? "'prefer-dark'" : "'default'";
+    const shaderbgFile =
+      val == ColorScheme.Default
+        ? "~/Pictures/Wallpapers/balatro_dark.frag"
+        : "~/Pictures/Wallpapers/balatro_gray.frag";
+    const css = val == ColorScheme.Default ? "/tmp/dark.css" : "/tmp/light.css";
 
-    const swwwArgs =
-      "--transition-type wipe --transition-angle 180 --transition-fps 60";
-    if (val == ColorScheme.Default) {
-      exec(
-        "dconf write /org/gnome/desktop/interface/color-scheme \"'prefer-dark'\"",
-      );
-      exec(`sh -c 'swww img ~/Pictures/Wallpapers/sui_bg.png ${swwwArgs}'`);
-      App.apply_css("/tmp/dark.css");
-    } else {
-      exec(
-        "dconf write /org/gnome/desktop/interface/color-scheme \"'default'\"",
-      );
-      exec(`sh -c 'swww img $HOME/Pictures/Wallpapers/sui_gray.png ${swwwArgs}'`);
-      App.apply_css("/tmp/light.css");
-    }
+    const swwwCmd = `sh -c 'swww img ${wallpaper} --transition-type wipe --transition-angle 180 --transition-fps 60'`;
+    const dconfCmd = `dconf write /org/gnome/desktop/interface/color-scheme "${dconfScheme}"`;
+    const shaderbgCmd = `sh -c 'rm ~/Pictures/Wallpapers/shaderbg.frag && ln -s ${shaderbgFile} ~/Pictures/Wallpapers/shaderbg.frag && systemctl --user restart shaderbg'`;
+
+    exec("niri msg action do-screen-transition");
+    exec(dconfCmd);
+    exec(swwwCmd);
+    exec(shaderbgCmd);
+    App.apply_css(css);
   }
 
   return makeElement({
